@@ -16,7 +16,30 @@ fun main() {
     printMessage("Hello")                                               // apenas a mensagem
     printMessageWithPrefix("Hello", "Log")                              // não é necessário deixar explicito a variavel
     printMessageWithPrefix("Hello")                                     // sem dado para o prefixo, vai como info
-    printMessageWithPrefix(prefix = "Ray", message = "Hello")           // deixando a atribuição explicita e alterando o dado do prefixo
+    printMessageWithPrefix(
+        prefix = "Ray",
+        message = "Hello"
+    )           // deixando a atribuição explicita e alterando o dado do prefixo
     println(sum(1, 2))                                                  // 9
     println(multiply(2, 4))                                             // inserido o valor das variaveis
+
+    //vararg
+
+    fun printAll(vararg messages: String) {                            // podemos passar uma quantidade indefinida de um determinado tipo
+        for (m in messages) println(m)
+    }
+    printAll("Hello", "Hallo", "Salut", "Hola", "你好")                 // escolhemos as mensagens, todas do mesmo tipo (string)
+
+    fun printAllWithPrefix(vararg messages: String, prefix: String) {  // atribui um tipo para o prefixo
+        for (m in messages) println(prefix + m)                         //concatena o prefixo com a mensagem
+    }
+    printAllWithPrefix(
+        "Hello", "Hallo", "Salut", "Hola", "你好",
+        prefix = "Greeting: "
+    )
+
+    fun log(vararg entries: String) {           // se for chamar uma função dentro de outra e ambas são vararg
+        printAll(*entries)                      //precisa colocar o * para informar que é um vararg e não um array
+
+    }
 }
